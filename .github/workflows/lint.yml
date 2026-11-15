@@ -16,6 +16,19 @@ name: Lint (ruff + ty)
 
 on:
   workflow_dispatch:
+    inputs:
+      commit:
+        description: Commit to test and build. Empty keeps the triggering commit.
+        type: string
+        default: ''
+      event_name:
+        description: The event name from the calling orchestrator (pull_request or push).
+        type: string
+        default: ''
+      python:
+        description: Python changed. A frontend-only PR runs just the code-health ratchet (TS).
+        type: boolean
+        default: true
   workflow_call:
     inputs:
       commit:
