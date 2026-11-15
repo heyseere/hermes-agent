@@ -15,6 +15,7 @@ name: Lint (ruff + ty)
 # CI-sensitive file review is enforced by .github/CODEOWNERS, not a CI job.
 
 on:
+  workflow_dispatch:
   workflow_call:
     inputs:
       commit:
@@ -42,7 +43,7 @@ jobs:
     name: Python lints
     # A frontend-only push has nothing to check here (the ratchet is PR-only).
     if: inputs.python || inputs.event_name == 'pull_request'
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - name: Checkout code
